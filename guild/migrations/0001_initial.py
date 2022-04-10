@@ -8,51 +8,111 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Guild',
+            name="Guild",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('title', models.CharField(max_length=100, verbose_name='Guild name')),
-                ('description', models.TextField(verbose_name='Guild description')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("title", models.CharField(max_length=100, verbose_name="Guild name")),
+                ("description", models.TextField(verbose_name="Guild description")),
             ],
             options={
-                'ordering': ['created'],
+                "ordering": ["created"],
             },
         ),
         migrations.CreateModel(
-            name='GuildMember',
+            name="GuildMember",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('role', models.CharField(max_length=100)),
-                ('position', models.CharField(blank=True, choices=[('ADMIN', 'Admin'), ('MODERATOR', 'Moderator')], default='', max_length=21, null=True, verbose_name='User position')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("role", models.CharField(max_length=100)),
+                (
+                    "position",
+                    models.CharField(
+                        blank=True,
+                        choices=[("ADMIN", "Admin"), ("MODERATOR", "Moderator")],
+                        default="",
+                        max_length=21,
+                        null=True,
+                        verbose_name="User position",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='GuildTeam',
+            name="GuildTeam",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Team in guild')),
-                ('description', models.TextField(verbose_name='Team description')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=100, verbose_name="Team in guild"),
+                ),
+                ("description", models.TextField(verbose_name="Team description")),
             ],
         ),
         migrations.CreateModel(
-            name='TeamMember',
+            name="TeamMember",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('role', models.CharField(max_length=100)),
-                ('position', models.CharField(blank=True, choices=[('ADMIN', 'Admin'), ('MODERATOR', 'Moderator')], default='', max_length=21, null=True, verbose_name='User position')),
-                ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='guild.guildteam')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("role", models.CharField(max_length=100)),
+                (
+                    "position",
+                    models.CharField(
+                        blank=True,
+                        choices=[("ADMIN", "Admin"), ("MODERATOR", "Moderator")],
+                        default="",
+                        max_length=21,
+                        null=True,
+                        verbose_name="User position",
+                    ),
+                ),
+                (
+                    "team",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="guild.guildteam",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

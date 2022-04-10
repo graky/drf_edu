@@ -10,34 +10,52 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('guild', '0001_initial'),
+        ("guild", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='teammember',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Guild'),
+            model_name="teammember",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Guild",
+            ),
         ),
         migrations.AddField(
-            model_name='guildteam',
-            name='leader',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="guildteam",
+            name="leader",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AddField(
-            model_name='guildmember',
-            name='guild',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='guild.guild', verbose_name='Guild'),
+            model_name="guildmember",
+            name="guild",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="guild.guild",
+                verbose_name="Guild",
+            ),
         ),
         migrations.AddField(
-            model_name='guildmember',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Guild'),
+            model_name="guildmember",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Guild",
+            ),
         ),
         migrations.AddField(
-            model_name='guild',
-            name='creator',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Guild creator'),
+            model_name="guild",
+            name="creator",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Guild creator",
+            ),
         ),
     ]

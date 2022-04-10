@@ -19,7 +19,6 @@ from main.router import main_router
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include(main_router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-
+    path("", include(main_router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
