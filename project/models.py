@@ -14,7 +14,7 @@ class Project(models.Model):
 
     title = models.CharField(max_length=100, verbose_name="Project name")
     description = models.TextField(verbose_name="Project description")
-    status = models.CharField(max_length=21, choices=ProjectStatus.choices)
+    status = models.CharField(max_length=21, choices=ProjectStatus.choices, default="NOT_TAKEN")
     creator = models.ForeignKey(
         to=User, verbose_name="Project creator", on_delete=models.CASCADE
     )

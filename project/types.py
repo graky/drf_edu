@@ -51,12 +51,13 @@ class ProjectSerializer(serializers.ModelSerializer):
             "created",
             "stages",
         ]
-
+    status = serializers.CharField(required=False)
     stages = StageSerializer(many=True, read_only=True)
     creator = ProfileSerializer(read_only=True)
 
     def create(self, validated_data):
-        del validated_data["status"]
+        if validated_data.get("status"):
+            del validated_data["status"]
         project = Project(**validated_data)
         user = self.context["request"].user
         project.creator = user
