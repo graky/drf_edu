@@ -21,7 +21,7 @@ class Member(models.Model):
         ADMIN = "ADMIN"
         MODERATOR = "MODERATOR"
 
-    user = models.ForeignKey(to=User, verbose_name="Guild", on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, verbose_name="User", on_delete=models.CASCADE)
     role = models.CharField(max_length=100)
     position = models.CharField(
         max_length=21,
@@ -37,14 +37,27 @@ class Member(models.Model):
 
 
 class GuildMember(Member, models.Model):
-    guild = models.ForeignKey(to=Guild, verbose_name="Guild", on_delete=models.CASCADE)
+    guild = models.ForeignKey(
+        to=Guild,
+        verbose_name="Guild",
+        related_name="guild_members",
+        on_delete=models.CASCADE,
+    )
 
 
 class GuildTeam(models.Model):
+    guild = models.ForeignKey(
+        to=Guild, verbose_name="Guild", related_name="teams", on_delete=models.CASCADE
+    )
     name = models.CharField(max_length=100, verbose_name="Team in guild")
     description = models.TextField(verbose_name="Team description")
     leader = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
 
 class TeamMember(Member, models.Model):
-    team = models.ForeignKey(to=GuildTeam, on_delete=models.CASCADE)
+    team = models.ForeignKey(
+        to=GuildTeam,
+        verbose_name="Team",
+        related_name="team_members",
+        on_delete=models.CASCADE,
+    )
